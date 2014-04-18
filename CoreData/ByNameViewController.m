@@ -16,7 +16,7 @@
 @implementation ByNameViewController
 
 @synthesize nameTF, providerTypeTF, withinTF, locationTF,topTF;
-@synthesize scrollView;
+@synthesize scrollView, providerArray, providerPicker;
 
 BOOL keyboardIsShown;
 UITextField *currentTextField;
@@ -38,7 +38,84 @@ UITextField *currentTextField;
     scrollView.frame = CGRectMake(0, 0, 320, 568);
     scrollView.contentSize = CGSizeMake(320, 700);
     [self.navigationItem setHidesBackButton:YES];
+    
+    providerArray   = [self getProviderTypes];
+    
+    
+    providerPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 380, 320, 200)];
+    providerPicker.delegate = self;
+    providerPicker.showsSelectionIndicator = YES;
+
 }
+
+-(NSMutableArray *) getProviderTypes
+{
+    NSMutableArray *providerTypesArray = [[NSMutableArray alloc] init];
+   
+    [providerTypesArray addObject:@"Ancillaries"];
+    [providerTypesArray addObject:@"Behavioral Health Facilities"];
+    [providerTypesArray addObject:@"Behavioral Health Practitioners"];
+    [providerTypesArray addObject:@"Blue Distinction Bariatric Centers"];
+    [providerTypesArray addObject:@"Blue Distinction Cardiac Centers"];
+    [providerTypesArray addObject:@"Blue Distinction Knee/Hip Centers"];
+    [providerTypesArray addObject:@"Blue Distinction Rare and Complex Cancer Centers"];
+    [providerTypesArray addObject:@"Blue Distinction Spine Centers"];
+    [providerTypesArray addObject:@"Blue Distinction Transplant Centers"];
+    [providerTypesArray addObject:@"Medical/Surgical Hospitals"];
+    [providerTypesArray addObject:@"Pharmacies"];
+    [providerTypesArray addObject:@"Primary Care Physicians"];
+    [providerTypesArray addObject:@"Retail Health Clinics"];
+    [providerTypesArray addObject:@"Specialists"];
+    [providerTypesArray addObject:@"Supervised And Sponsored Providers"];
+    [providerTypesArray addObject:@"Urgent Care Centers"];
+    return providerTypesArray;
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
+    // Handle the selection
+    [providerTypeTF setText:providerArray[row]];
+    [providerPicker  removeFromSuperview];
+    
+}
+
+// tell the picker how many rows are available for a given component
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    
+    
+    return [providerArray count];
+}
+
+// tell the picker how many components it will have
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+// tell the picker the title for a given component
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
+    
+    return providerArray[row];
+}
+
+// tell the picker the width of each row for a given component
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    int sectionWidth = 300;
+    
+    return sectionWidth;
+}
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if(textField == providerTypeTF) {
+        [self.view addSubview:providerPicker];
+        
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
 
 
 
