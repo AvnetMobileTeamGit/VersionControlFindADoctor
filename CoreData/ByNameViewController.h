@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ByNameViewController : UIViewController
+@interface ByNameViewController : UIViewController <UIPickerViewDelegate, UITextFieldDelegate>
+
+@property (nonatomic, strong) NSMutableArray *providerArray;
+@property (nonatomic, strong) UIPickerView *providerPicker;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UITextField *providerTypeTF;

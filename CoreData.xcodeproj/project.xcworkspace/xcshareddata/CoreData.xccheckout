@@ -5,19 +5,31 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
+<<<<<<< HEAD
 	<string>62727984-D3E0-493C-8846-F18DDEF22C6D</string>
+=======
+	<string>94050C85-5869-4016-BCA3-CF6FBD36368D</string>
+>>>>>>> FETCH_HEAD
 	<key>IDESourceControlProjectName</key>
 	<string>CoreData</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+<<<<<<< HEAD
 		<key>BDBB742F-AA4A-41B0-84CA-E640574F57B0</key>
+=======
+		<key>29CD6814-5933-4C12-A483-D5E842DCCEF1</key>
+>>>>>>> FETCH_HEAD
 		<string>https://github.com/AvnetMobileTeamGit/VersionControlFindADoctor.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>CoreData.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+<<<<<<< HEAD
 		<key>BDBB742F-AA4A-41B0-84CA-E640574F57B0</key>
+=======
+		<key>29CD6814-5933-4C12-A483-D5E842DCCEF1</key>
+>>>>>>> FETCH_HEAD
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +37,22 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
+<<<<<<< HEAD
 	<string>BDBB742F-AA4A-41B0-84CA-E640574F57B0</string>
+=======
+	<string>29CD6814-5933-4C12-A483-D5E842DCCEF1</string>
+>>>>>>> FETCH_HEAD
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+<<<<<<< HEAD
 			<string>BDBB742F-AA4A-41B0-84CA-E640574F57B0</string>
+=======
+			<string>29CD6814-5933-4C12-A483-D5E842DCCEF1</string>
+>>>>>>> FETCH_HEAD
 			<key>IDESourceControlWCCName</key>
 			<string>VersionControlFindADoctor</string>
 		</dict>
