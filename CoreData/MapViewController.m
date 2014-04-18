@@ -9,6 +9,7 @@
 #import "MapViewController.h"
 #import "MyAnnotation.h"
 #import "MyAnnotationView.h"
+#import "DetailViewController.h"
 
 #define METERS_PER_MILE 1609.344
 
@@ -52,7 +53,7 @@ NSMutableArray *arr;
         CLLocation *docLocation=[[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
         CLLocationCoordinate2D tempCoord = CLLocationCoordinate2DMake(docLocation.coordinate.latitude, docLocation.coordinate.longitude);
         
-        [annotations addObject: [[MyAnnotation alloc]initWithCoordinate:tempCoord title:[tempDoc valueForKey:@"firstName"] subtitle:[tempDoc valueForKey:@"speciality"] contactInformation:[tempDoc valueForKey:@"phoneNumber"]]];
+        [annotations addObject: [[MyAnnotation alloc]initWithCoordinate:tempCoord title:[tempDoc valueForKey:@"firstName"] lastName:[tempDoc valueForKey:@"lastName"] subtitle:[tempDoc valueForKey:@"speciality"] address:[tempDoc valueForKey:@"address"] businessHours:[tempDoc valueForKey:@"businessHours"] network:[tempDoc valueForKey:@"network"] phoneNumber:[tempDoc valueForKey:@"phoneNumber"]]];
         
         
         
@@ -67,6 +68,8 @@ NSMutableArray *arr;
     
     
 }
+
+
 
 #pragma mark - Custom methods
 
@@ -121,7 +124,17 @@ NSMutableArray *arr;
     return nil;
 }
 
-
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    DetailViewController *viewController = (DetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"DetailViewControllerSBID"];
+    
+    viewController.annotation = view.annotation;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+    
+    
+}
 
 
 

@@ -10,13 +10,20 @@
 
 @implementation MyAnnotation
 
--(id)initWithCoordinate:(CLLocationCoordinate2D)coord title:(NSString *)title subtitle:(NSString *)subtitle contactInformation:(NSString *)contactInfo {
+
+@synthesize coordinate, title, lastName, subtitle, address, businessHours, network, phoneNumber;
+
+-(id)initWithCoordinate:(CLLocationCoordinate2D)coord title:(NSString *)firstN lastName:(NSString *)lastN subtitle:(NSString *)special address:(NSString *)add businessHours:(NSString *)businessH network:(NSString *)netw phoneNumber:(NSString *)phoneN   {
     self = [super init];
     if (self) {
-        self.coordinate = coord;
-        self.title = title;
-        self.subtitle = subtitle;
-        self.contactInformation = contactInfo;
+        coordinate = coord;
+        title = firstN;
+        lastName = lastN;
+        subtitle = special;
+        address = add;
+        businessHours = businessH;
+        network = netw;
+        phoneNumber = phoneN;
     }
     return self;
 }

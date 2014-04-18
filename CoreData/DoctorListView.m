@@ -11,6 +11,8 @@
 #import "Doctor.h"
 #import "FileParser.h"
 #import "BySpecialtyViewController.h"
+#import "DetailViewController.h"
+
 @interface DoctorListView ()
 @property CLLocation *userLocation;
 @end
@@ -20,7 +22,7 @@
 
 static NSString* DoctortableIdentifier=@"DoctorListTableIdentifier";
 UITableView *tableView;
-NSArray *sortedKeys;
+NSMutableArray *sortedKeys;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -105,6 +107,7 @@ NSArray *sortedKeys;
 
     doctorsList=[[managedObject executeFetchRequest:fetchRequest error:nil]mutableCopy];
    
+    
     [self findNearestLocAndDistance];
     [tableView reloadData];
     
@@ -122,12 +125,24 @@ NSArray *sortedKeys;
         CLLocationDistance distance = [userLocation distanceFromLocation:docLocation];
         [docDistanceDictionary setObject:tempDoc forKey:[NSNumber numberWithFloat:distance]];
     }
-    sortedKeys =[[docDistanceDictionary allKeys] sortedArrayUsingSelector: @selector(compare:)];
+    
+    //Remove items with distance grater than requested scope
+    NSArray *keyArray =  [docDistanceDictionary allKeys];
+    int count = [keyArray count];
+    for (int i=0; i < count; i++) {
+        if([[keyArray objectAtIndex:i] floatValue]> ([search.withIn floatValue]*1609.34)){
+            [docDistanceDictionary removeObjectForKey:[keyArray objectAtIndex:i]];
+        }
+    }
+    
+    
+    sortedKeys =(NSMutableArray *)[[docDistanceDictionary allKeys] sortedArrayUsingSelector: @selector(compare:)];
     NSMutableArray *sortedValues = [NSMutableArray array];
     for (NSString *key in sortedKeys){
         [sortedValues addObject: [docDistanceDictionary objectForKey: key]];
     }
     
+  
     doctorsList=sortedValues;
 }
 
@@ -213,16 +228,29 @@ NSArray *sortedKeys;
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DoctorTableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:DoctortableIdentifier forIndexPath:indexPath];
     NSManagedObject *tempDevice= [doctorsList objectAtIndex:indexPath.row];
-    cell.firstNameLabel.text=[tempDevice valueForKey:@"firstName" ];
-    cell.lastNameLabel.text=[tempDevice valueForKey:@"lastName" ];
-    cell.specialtyLabel.text=[tempDevice valueForKey:@"speciality" ];
-    cell.addressLabel.text=[tempDevice valueForKey:@"phoneNumber" ];
-    NSString *distance= [NSString stringWithFormat:@"%.2f mi",[sortedKeys[indexPath.row]floatValue]*0.000621371];
+    
+    // doctor full name and title
+    NSString *doctorFullName = [NSString stringWithFormat:@"Dr. %@ %@, MD", [tempDevice valueForKey:@"firstName"],
+                                [tempDevice valueForKey:@"lastName"]];
+    cell.doctorFullName.text = doctorFullName;
+    cell.doctorFullName.textColor = [UIColor colorWithRed:0/255.0f green:115/255.0f blue:186/255.0f alpha:1.0f];
+    cell.doctorFullName.font = [UIFont boldSystemFontOfSize:18];
+    
+    // distance
+    NSString *distance= [NSString stringWithFormat:@"(%.2f Miles)",[sortedKeys[indexPath.row]floatValue]*0.000621371];
     cell.distanceLabel.text=distance;
-
+    cell.distanceLabel.textColor = [UIColor grayColor];
     
+    // speciality
+    cell.specialtyLabel.text=[tempDevice valueForKey:@"speciality" ];
+    cell.specialtyLabel.textColor = [UIColor darkGrayColor];
+    
+    // address
+    cell.addressLabel.text = [tempDevice valueForKey:@"address"];
+    cell.addressLabel.textColor = [UIColor grayColor];
+    cell.addressLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
     return cell;
-    
+
 }
 
 
@@ -250,6 +278,25 @@ NSArray *sortedKeys;
     if ([[segue identifier] isEqualToString:@"showMapView"]) {
         [[segue destinationViewController]  setDoctorsList:doctorsList];
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    DetailViewController *viewController = (DetailViewController *)[storyboard instantiateViewControllerWithIdentifier:@"DetailViewControllerSBID"];
+    
+    
+    NSManagedObject *tempDoc= [doctorsList objectAtIndex:indexPath.row];
+    float latitude= [[tempDoc valueForKey:@"latitude"]floatValue];
+    float longitude= [[tempDoc valueForKey:@"longitude"]floatValue];
+    CLLocation *docLocation=[[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
+    CLLocationCoordinate2D tempCoord = CLLocationCoordinate2DMake(docLocation.coordinate.latitude, docLocation.coordinate.longitude);
+    
+    MyAnnotation *atn = [[MyAnnotation alloc]initWithCoordinate:tempCoord title:[tempDoc valueForKey:@"firstName"] lastName:[tempDoc valueForKey:@"lastName"] subtitle:[tempDoc valueForKey:@"speciality"] address:[tempDoc valueForKey:@"address"] businessHours:[tempDoc valueForKey:@"businessHours"] network:[tempDoc valueForKey:@"network"] phoneNumber:[tempDoc valueForKey:@"phoneNumber"]];
+    viewController.annotation=atn;
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+
 }
 
 @end

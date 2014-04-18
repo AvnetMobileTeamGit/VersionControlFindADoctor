@@ -43,6 +43,8 @@
 		D45FC94219005EF10064B749 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D45FC93F19005EF10064B749 /* MyAnnotation.m */; };
 		D45FC94319005EF10064B749 /* MyAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45FC94119005EF10064B749 /* MyAnnotationView.m */; };
 		D45FC945190060CC0064B749 /* custompin.png in Resources */ = {isa = PBXBuildFile; fileRef = D45FC944190060CC0064B749 /* custompin.png */; };
+		D45FC9481900901A0064B749 /* CallOfficeBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = D45FC9461900901A0064B749 /* CallOfficeBtn2.png */; };
+		D45FC9491900901A0064B749 /* SaveContactBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = D45FC9471900901A0064B749 /* SaveContactBtn2.png */; };
 		D46C7C6319001A4600C66576 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D46C7C6219001A4600C66576 /* Main.storyboard */; };
 		D46C7C6819001CE600C66576 /* familyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D46C7C6519001CE600C66576 /* familyImage.png */; };
 		D46C7C6919001CE600C66576 /* bottomButtonBar.png in Resources */ = {isa = PBXBuildFile; fileRef = D46C7C6619001CE600C66576 /* bottomButtonBar.png */; };
@@ -115,6 +117,8 @@
 		D45FC94019005EF10064B749 /* MyAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotationView.h; sourceTree = "<group>"; };
 		D45FC94119005EF10064B749 /* MyAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotationView.m; sourceTree = "<group>"; };
 		D45FC944190060CC0064B749 /* custompin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custompin.png; sourceTree = "<group>"; };
+		D45FC9461900901A0064B749 /* CallOfficeBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CallOfficeBtn2.png; sourceTree = "<group>"; };
+		D45FC9471900901A0064B749 /* SaveContactBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SaveContactBtn2.png; sourceTree = "<group>"; };
 		D46C7C6219001A4600C66576 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D46C7C6519001CE600C66576 /* familyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = familyImage.png; sourceTree = "<group>"; };
 		D46C7C6619001CE600C66576 /* bottomButtonBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomButtonBar.png; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 		D45215D318F7293100D51195 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				D45FC9461900901A0064B749 /* CallOfficeBtn2.png */,
+				D45FC9471900901A0064B749 /* SaveContactBtn2.png */,
 				D45FC944190060CC0064B749 /* custompin.png */,
 				D46C7C6519001CE600C66576 /* familyImage.png */,
 				D46C7C6619001CE600C66576 /* bottomButtonBar.png */,
@@ -378,7 +384,9 @@
 				D45FC945190060CC0064B749 /* custompin.png in Resources */,
 				D46C7C6A19001CE600C66576 /* FindADoctor.png in Resources */,
 				D45215E318F7293100D51195 /* Images.xcassets in Resources */,
+				D45FC9491900901A0064B749 /* SaveContactBtn2.png in Resources */,
 				D46C7C6319001A4600C66576 /* Main.storyboard in Resources */,
+				D45FC9481900901A0064B749 /* CallOfficeBtn2.png in Resources */,
 				D43F7D3318FD7C32003E63EF /* DoctorTableViewCell.xib in Resources */,
 				D43F7D7018FDC859003E63EF /* 192-credit-card.png in Resources */,
 			);
